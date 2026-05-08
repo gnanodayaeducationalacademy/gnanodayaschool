@@ -123,7 +123,7 @@ const renderAlumniProfiles = () => {
   alumniList.innerHTML = "";
 
   if (!entries.length) {
-    alumniList.innerHTML = '<div class="saved-card"><strong>No alumni profiles saved yet.</strong><span>LinkedIn submissions will appear here for the website preview.</span></div>';
+    alumniList.innerHTML = '<div class="saved-card"><strong>No alumni profiles saved yet.</strong><span>LinkedIn submissions will appear here after alumni add their details.</span></div>';
     return;
   }
 
@@ -143,7 +143,7 @@ const renderAlumniProfiles = () => {
 if (admissionsForm) {
   admissionsForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    admissionsMessage.textContent = "Admission interest saved for the website preview. Connect this form to email, Google Sheets, or a backend before going live.";
+    admissionsMessage.textContent = "Admission interest saved. Connect this form to email, Google Sheets, or a backend for live enquiries.";
     admissionsForm.reset();
   });
 }
@@ -151,7 +151,7 @@ if (admissionsForm) {
 if (contactForm) {
   contactForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    contactMessage.textContent = "Enquiry captured for the website preview. Connect this form to the admissions office email or CRM before public launch.";
+    contactMessage.textContent = "Enquiry captured. Connect this form to the admissions office email or CRM for live enquiries.";
     contactForm.reset();
   });
 }
@@ -165,7 +165,7 @@ if (alumniForm) {
     const entries = JSON.parse(localStorage.getItem(alumniStorageKey) || "[]");
     entries.unshift(entry);
     localStorage.setItem(alumniStorageKey, JSON.stringify(entries.slice(0, 8)));
-    alumniMessage.textContent = "Alumni profile saved locally for the website preview.";
+    alumniMessage.textContent = "Alumni profile saved locally.";
     alumniForm.reset();
     renderAlumniProfiles();
   });

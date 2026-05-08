@@ -1,15 +1,16 @@
 :root {
-  --bg: #f7f4eb;
-  --surface: #fffdf8;
+  --bg: #f5f8ef;
+  --surface: #fffdf5;
   --surface-strong: #ffffff;
-  --ink: #182026;
-  --muted: #55636f;
-  --line: rgba(24, 32, 38, 0.12);
-  --primary: #0f5b78;
-  --primary-deep: #083f53;
-  --accent: #c9872c;
-  --accent-soft: #f2e4c8;
-  --shadow: 0 20px 60px rgba(15, 36, 52, 0.12);
+  --ink: #162019;
+  --muted: #53645a;
+  --line: rgba(15, 101, 55, 0.16);
+  --primary: #0f7a3b;
+  --primary-deep: #07542c;
+  --accent: #efa83a;
+  --accent-rose: #d84686;
+  --accent-soft: #fff1ce;
+  --shadow: 0 20px 60px rgba(7, 84, 44, 0.13);
   --radius-xl: 32px;
   --radius-lg: 22px;
   --radius-md: 16px;
@@ -29,9 +30,9 @@ body {
   font-family: "Manrope", sans-serif;
   color: var(--ink);
   background:
-    radial-gradient(circle at top left, rgba(201, 135, 44, 0.18), transparent 30%),
-    radial-gradient(circle at top right, rgba(15, 91, 120, 0.16), transparent 28%),
-    linear-gradient(180deg, #f8f4e9 0%, #f2f0ea 100%);
+    radial-gradient(circle at top left, rgba(239, 168, 58, 0.2), transparent 30%),
+    radial-gradient(circle at top right, rgba(15, 122, 59, 0.14), transparent 28%),
+    linear-gradient(180deg, #f9fbf2 0%, #eef6e8 100%);
 }
 
 img {
@@ -67,7 +68,7 @@ button {
   border-radius: 999px;
   background: rgba(255, 253, 248, 0.84);
   backdrop-filter: blur(18px);
-  box-shadow: 0 14px 40px rgba(15, 36, 52, 0.08);
+  box-shadow: 0 14px 40px rgba(7, 84, 44, 0.1);
 }
 
 .brand {
@@ -92,17 +93,14 @@ button {
   margin-top: 2px;
 }
 
-.brand-mark {
+.brand-logo {
   width: 52px;
   height: 52px;
-  display: grid;
-  place-items: center;
-  border-radius: 18px;
-  font-family: "Sora", sans-serif;
-  font-weight: 800;
-  color: white;
-  background: linear-gradient(135deg, var(--primary) 0%, #2c8dad 100%);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  flex: 0 0 52px;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 3px solid rgba(239, 168, 58, 0.78);
+  box-shadow: 0 8px 18px rgba(7, 84, 44, 0.18);
 }
 
 .nav-links {
@@ -135,7 +133,7 @@ button {
   gap: 24px;
   padding: 38px;
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(248, 243, 230, 0.92)),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(244, 251, 235, 0.92)),
     var(--surface);
   border: 1px solid rgba(255, 255, 255, 0.65);
   box-shadow: var(--shadow);
@@ -220,8 +218,8 @@ button {
 
 .button-primary {
   color: white;
-  background: linear-gradient(135deg, var(--primary) 0%, #1f7da0 100%);
-  box-shadow: 0 16px 30px rgba(15, 91, 120, 0.24);
+  background: linear-gradient(135deg, var(--primary) 0%, #18a15b 100%);
+  box-shadow: 0 16px 30px rgba(15, 122, 59, 0.24);
 }
 
 .button-secondary {
@@ -257,7 +255,8 @@ button {
 
 .panel-highlight {
   background:
-    linear-gradient(160deg, rgba(15, 91, 120, 0.9), rgba(8, 63, 83, 0.95)),
+    radial-gradient(circle at top right, rgba(239, 168, 58, 0.28), transparent 28%),
+    linear-gradient(160deg, rgba(15, 122, 59, 0.94), rgba(7, 84, 44, 0.98)),
     var(--primary);
   color: white;
 }
@@ -302,8 +301,9 @@ button {
 .section-dark {
   color: white;
   background:
-    radial-gradient(circle at top right, rgba(201, 135, 44, 0.28), transparent 24%),
-    linear-gradient(180deg, #102734 0%, #0c1c27 100%);
+    radial-gradient(circle at top right, rgba(239, 168, 58, 0.28), transparent 24%),
+    radial-gradient(circle at bottom left, rgba(216, 70, 134, 0.18), transparent 30%),
+    linear-gradient(180deg, #0b5c31 0%, #06391f 100%);
 }
 
 .section-dark .section-heading p,
@@ -314,7 +314,7 @@ button {
 
 .section-accent {
   background:
-    linear-gradient(145deg, rgba(243, 228, 200, 0.92), rgba(255, 248, 235, 0.92)),
+    linear-gradient(145deg, rgba(255, 241, 206, 0.94), rgba(246, 253, 238, 0.94)),
     var(--accent-soft);
 }
 
@@ -543,7 +543,7 @@ button {
 }
 
 .saved-card a {
-  color: #9bdcff;
+  color: #ffe39a;
   font-weight: 700;
 }
 
@@ -557,7 +557,7 @@ button {
 }
 
 .lightbox::backdrop {
-  background: rgba(8, 19, 28, 0.74);
+  background: rgba(5, 48, 26, 0.74);
 }
 
 .lightbox img {
