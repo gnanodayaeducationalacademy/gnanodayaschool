@@ -178,6 +178,10 @@ button {
   margin: 28px 0 22px;
 }
 
+.compact-actions {
+  margin: 18px 0;
+}
+
 .social-strip {
   display: flex;
   flex-wrap: wrap;
@@ -206,8 +210,11 @@ button {
   min-height: 50px;
   padding: 0 22px;
   border-radius: 999px;
+  border: 0;
   text-decoration: none;
   font-weight: 800;
+  font: inherit;
+  cursor: pointer;
   transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
 }
 

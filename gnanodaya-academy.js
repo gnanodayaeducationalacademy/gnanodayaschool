@@ -13,6 +13,12 @@ const admissionsMessage = document.getElementById("admissionsMessage");
 const contactMessage = document.getElementById("contactMessage");
 const alumniMessage = document.getElementById("alumniMessage");
 const alumniList = document.getElementById("alumniList");
+const exportAlumniCsv = document.getElementById("exportAlumniCsv");
+const openAlumniGoogleForm = document.getElementById("openAlumniGoogleForm");
+
+// Add the school's alumni Google Form URL here when it is ready.
+// Example: const alumniGoogleFormUrl = "https://forms.gle/yourAlumniForm";
+const alumniGoogleFormUrl = "";
 
 const activateTab = (tabName) => {
   tabButtons.forEach((button) => {
@@ -114,28 +120,84 @@ if (lightboxClose && lightbox) {
 
 const alumniStorageKey = "gnanodaya-alumni-profiles";
 
+if (openAlumniGoogleForm && alumniGoogleFormUrl) {
+  openAlumniGoogleForm.href = alumniGoogleFormUrl;
+  openAlumniGoogleForm.hidden = false;
+}
+
+const getAlumniEntries = () => JSON.parse(localStorage.getItem(alumniStorageKey) || "[]");
+
+const saveAlumniEntries = (entries) => {
+  localStorage.setItem(alumniStorageKey, JSON.stringify(entries.slice(0, 100)));
+};
+
+const csvEscape = (value) => `"${String(value || "").replaceAll('"', '""')}"`;
+
+const downloadAlumniCsv = () => {
+  const entries = getAlumniEntries();
+
+  if (!entries.length) {
+    alumniMessage.textContent = "No alumni LinkedIn profiles are saved yet.";
+    return;
+  }
+
+  const headers = ["Full Name", "Batch / Passing Year", "Current Role or Company", "LinkedIn Profile URL", "Recommendation Note", "Submitted At"];
+  const rows = entries.map((entry) => [
+    entry.alumniName,
+    entry.alumniBatch,
+    entry.alumniRole,
+    entry.alumniLinkedIn,
+    entry.alumniNote,
+    entry.submittedAt,
+  ]);
+  const csv = [headers, ...rows].map((row) => row.map(csvEscape).join(",")).join("\n");
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "gnanodaya-alumni-linkedin-profiles.csv";
+  document.body.append(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+  alumniMessage.textContent = "Alumni LinkedIn CSV exported for Google Sheets.";
+};
+
 const renderAlumniProfiles = () => {
   if (!alumniList) {
     return;
   }
 
-  const entries = JSON.parse(localStorage.getItem(alumniStorageKey) || "[]");
+  const entries = getAlumniEntries();
   alumniList.innerHTML = "";
 
   if (!entries.length) {
-    alumniList.innerHTML = '<div class="saved-card"><strong>No alumni profiles saved yet.</strong><span>LinkedIn submissions will appear here after alumni add their details.</span></div>';
+    const emptyCard = document.createElement("div");
+    emptyCard.className = "saved-card";
+    const emptyTitle = document.createElement("strong");
+    emptyTitle.textContent = "No alumni profiles saved yet.";
+    const emptyText = document.createElement("span");
+    emptyText.textContent = "LinkedIn submissions will appear here after alumni add their details.";
+    emptyCard.append(emptyTitle, emptyText);
+    alumniList.append(emptyCard);
     return;
   }
 
   entries.forEach((entry) => {
     const card = document.createElement("article");
     card.className = "saved-card";
-    card.innerHTML = `
-      <strong>${entry.alumniName}</strong>
-      <div>${entry.alumniBatch} | ${entry.alumniRole}</div>
-      <p>${entry.alumniNote || "Recommendation note not added yet."}</p>
-      <a href="${entry.alumniLinkedIn}" target="_blank" rel="noreferrer">View LinkedIn profile</a>
-    `;
+    const name = document.createElement("strong");
+    name.textContent = entry.alumniName;
+    const meta = document.createElement("div");
+    meta.textContent = `${entry.alumniBatch} | ${entry.alumniRole}`;
+    const note = document.createElement("p");
+    note.textContent = entry.alumniNote || "Recommendation note not added yet.";
+    const link = document.createElement("a");
+    link.href = entry.alumniLinkedIn;
+    link.target = "_blank";
+    link.rel = "noreferrer";
+    link.textContent = "View LinkedIn profile";
+    card.append(name, meta, note, link);
     alumniList.append(card);
   });
 };
@@ -162,13 +224,20 @@ if (alumniForm) {
 
     const formData = new FormData(alumniForm);
     const entry = Object.fromEntries(formData.entries());
-    const entries = JSON.parse(localStorage.getItem(alumniStorageKey) || "[]");
+    entry.submittedAt = new Date().toISOString();
+    const entries = getAlumniEntries();
     entries.unshift(entry);
-    localStorage.setItem(alumniStorageKey, JSON.stringify(entries.slice(0, 8)));
-    alumniMessage.textContent = "Alumni profile saved locally.";
+    saveAlumniEntries(entries);
+    alumniMessage.textContent = alumniGoogleFormUrl
+      ? "Alumni LinkedIn profile saved. You can also open the Google Form from the database panel."
+      : "Alumni LinkedIn profile saved. Use Export CSV to add it to Google Sheets.";
     alumniForm.reset();
     renderAlumniProfiles();
   });
+}
+
+if (exportAlumniCsv) {
+  exportAlumniCsv.addEventListener("click", downloadAlumniCsv);
 }
 
 renderAlumniProfiles();
