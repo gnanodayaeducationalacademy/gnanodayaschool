@@ -297,41 +297,25 @@
 
         <div class="two-column-grid">
           <article class="panel dark-card">
-            <h3>Alumni LinkedIn Submission</h3>
-            <form id="alumniForm" class="stacked-form">
-              <label>
-                Full name
-                <input type="text" id="alumniName" name="alumniName" placeholder="Alumnus / alumna name" required>
-              </label>
-              <label>
-                Batch / passing year
-                <input type="text" id="alumniBatch" name="alumniBatch" placeholder="Example: 2019 batch" required>
-              </label>
-              <label>
-                Current role or company
-                <input type="text" id="alumniRole" name="alumniRole" placeholder="Software Engineer at..." required>
-              </label>
-              <label>
-                LinkedIn profile URL
-                <input type="url" id="alumniLinkedIn" name="alumniLinkedIn" placeholder="https://www.linkedin.com/in/..." required>
-              </label>
-              <label>
-                Recommendation note
-                <textarea id="alumniNote" name="alumniNote" rows="4" placeholder="How did the school help shape your journey?"></textarea>
-              </label>
-              <button class="button button-primary" type="submit">Submit alumni profile</button>
-              <p id="alumniMessage" class="form-message" aria-live="polite"></p>
-            </form>
+            <h3>Private Alumni LinkedIn Submission</h3>
+            <p class="section-copy">
+              Alumni can submit their LinkedIn profile through the school Google Form. Responses are not displayed on this website
+              and should remain visible only to the form owner.
+            </p>
+            <div class="hero-actions compact-actions">
+              <a class="button button-primary" id="openAlumniGoogleForm" href="#" target="_blank" rel="noreferrer">Submit Alumni Profile</a>
+            </div>
+            <p id="alumniMessage" class="form-message" aria-live="polite"></p>
           </article>
 
           <article class="panel dark-card">
-            <h3>Alumni LinkedIn Database</h3>
-            <p class="section-copy">Submitted LinkedIn profiles are saved in this browser and can be exported as a CSV for Google Sheets.</p>
-            <div class="hero-actions compact-actions">
-              <button class="button button-secondary" id="exportAlumniCsv" type="button">Export CSV</button>
-              <a class="button button-primary" id="openAlumniGoogleForm" href="#" target="_blank" rel="noreferrer" hidden>Open Google Form</a>
+            <h3>Privacy First</h3>
+            <div class="check-list">
+              <div>Anyone can submit the alumni form</div>
+              <div>Submissions are stored only in the owner's Google Form response sheet</div>
+              <div>Submitted LinkedIn profiles are not shown publicly</div>
+              <div>Selected alumni profiles can be published later only after manual approval</div>
             </div>
-            <div id="alumniList" class="saved-cards"></div>
           </article>
         </div>
       </section>
@@ -366,31 +350,14 @@
 
         <div class="two-column-grid">
           <article class="panel">
-            <h3>Admission Interest Form</h3>
-            <form id="admissionsForm" class="stacked-form">
-              <label>
-                Parent / guardian name
-                <input type="text" id="parentName" name="parentName" placeholder="Parent or guardian name" required>
-              </label>
-              <label>
-                Student name
-                <input type="text" id="studentName" name="studentName" placeholder="Student name" required>
-              </label>
-              <label>
-                Mobile number
-                <input type="tel" id="parentPhone" name="parentPhone" placeholder="xxxxxxxxxx" required>
-              </label>
-              <label>
-                Class interested in
-                <input type="text" id="studentClass" name="studentClass" placeholder="LKG, Grade 5, Grade 8..." required>
-              </label>
-              <label>
-                What would you like to know more about?
-                <textarea id="interestNote" name="interestNote" rows="4" placeholder="Admissions, hostel, academics, transport, fees..."></textarea>
-              </label>
-              <button class="button button-primary" type="submit">Submit admission interest</button>
-              <p id="admissionsMessage" class="form-message" aria-live="polite"></p>
-            </form>
+            <h3>Private Admission Enquiry Form</h3>
+            <p>
+              Parents can submit admission enquiries through the school Google Form. Responses are stored privately in the
+              form owner's Google account and are not displayed on this website.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="https://forms.gle/WtQUYw2cK7b7fcKj8" target="_blank" rel="noreferrer">Open Admissions Google Form</a>
+            </div>
           </article>
 
           <article class="panel">
