@@ -11,7 +11,7 @@ const contactMessage = document.getElementById("contactMessage");
 const alumniMessage = document.getElementById("alumniMessage");
 const openAlumniGoogleForm = document.getElementById("openAlumniGoogleForm");
 
-const alumniGoogleFormUrl = "https://docs.google.com/forms/d/1NF2BHQADOmNqA8XRoF7osPxy_OgPh0zXuaMDkXszE3M/viewform";
+const alumniGoogleFormUrl = "https://forms.gle/f5uiSnB97vv2Sq8Z9";
 
 const activateTab = (tabName) => {
   tabButtons.forEach((button) => {
